@@ -41,7 +41,6 @@ def format_transaction(tx):
         "hash": tx.id,
         "hash_as_number": tx.hash_as_number,
         "index": tx.index,
-        "hex": tx.hex,
         "size": tx.size,
         "time": tx.time,
         "median_time": tx.median_time,

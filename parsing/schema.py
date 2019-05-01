@@ -168,7 +168,6 @@ class TransactionSchema(object):
         self.hash = data['txid']
         self.hash_as_number = tx_id_as_number
         self.index = tx_index
-        self.hex = data['hex']
         self.size = int(data["size"])
         self.time = tx_time
         self.median_time = tx_median_time
