@@ -1,0 +1,119 @@
+{
+  "bits": {
+    "type": "integer",
+    "description": "The value of the nBits field in the block header, indicating the target threshold this block’s header had to pass",
+    "required": true
+  },
+  "chain_work": {
+    "type": "string",
+    "description": "The estimated number of block header hashes miners had to check from the genesis block to this block, encoded as big-endian hex.",
+    "required": true
+  },
+  "chain_work_as_number": {
+    "type": "integer",
+    "description": "Integer representation of chain work.",
+    "required": true
+  },
+  "confirmations": {
+    "type": "integer",
+    "description": "The number of confirmations the transactions in this block have, starting at 1 when this block is at the tip of the best block chain. This score will be -1 if the the block is not part of the best block chain.",
+    "required": true
+  },
+  "difficulty": {
+    "type": "integer",
+    "description": "The estimated amount of work done to find this block relative to the estimated amount of work done to find block 0.",
+    "required": true
+  },
+  "height": {
+    "type": "integer",
+    "description": "The height of this block on its block chain.",
+    "required": true
+  },
+  "hash": {
+    "type": "string",
+    "description": "block hash",
+    "required": true
+  },
+  "hash_as_number": {
+    "type": "integer",
+    "description": "Integer representation of a block hash.",
+    "required": true
+  },
+  "median_time": {
+    "type": "datetime",
+    "description": "UTC datetime of the median block time, i.e. 2019-05-01T00:00:00",
+    "example": "YYYY-MM-DDTHH:MM:SS",
+    "required": true
+  },
+  "merkle_root": {
+    "type": "string",
+    "description": "The reference to a Merkle tree collection which is a hash of all transactions related to this block.",
+    "required": true
+  },
+  "next_block_hash": {
+    "type": "string",
+    "description": "The hash of the next block on the best block chain, if known, encoded as hex in RPC byte order.",
+    "required": false
+  },
+  "next_block_hash_as_number": {
+    "type": "integer",
+    "description": "Integer representation of the next block.",
+    "required": false
+  },
+  "nonce": {
+    "type": "string",
+    "description": "The nonce used to generate this block… to allow variations of the header and compute different hashes.",
+    "required": true
+  },
+  "prev_block_hash": {
+    "type": "string",
+    "description": "The hash value of the previous block this particular block references.",
+    "required": true
+  },
+  "prev_block_hash_as_number": {
+    "type": "integer",
+    "description": "The integer value of the previous block this particular block references.",
+    "required": true
+  },
+  "size": {
+    "type": "integer",
+    "description": "The size of this block in serialized block format, counted in bytes.",
+    "required": true
+  },
+  "stripped_size": {
+    "type": "integer",
+    "description": "The size of this block in serialized block format excluding witness data, counted in bytes.",
+    "required": true
+  },
+  "time": {
+    "type": "datetime",
+    "description": "UTC datetime recording when this block was created.",
+    "example": "YYYY-MM-DDTHH:MM:SS",
+    "required": true
+  },
+  "transactions": {
+    "type": "array<transaction.json>",
+    "description": "",
+    "required": true
+  },
+  "transaction_count": {
+    "type": "integer",
+    "description": "The count of transactions in this block.",
+    "required": true
+  },
+  "version": {
+    "type": "string",
+    "description": "This block's version number (see: https://bitcoin.org/en/developer-reference#block-versions).",
+    "required": true
+  },
+  "version_hex": {
+    "type": "string",
+    "description": "This block's version formatted in hexadecimal.",
+    "required": true
+  },
+  "weight": {
+    "type": "integer",
+    "description": "This block's weight as defined in BIP141.",
+    "required": true
+  }
+}

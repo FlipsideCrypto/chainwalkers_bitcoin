@@ -30,12 +30,17 @@ class BlockSchema(object):
         self.hash_as_number = int(data["hash"], base=16)
         assert(self.hash_as_number < 10**HASH_PRECISION)
 
-        self.prev_block_hash_as_number = int(data["previousblockhash"], base=16)
-        assert(self.prev_block_hash_as_number < 10**HASH_PRECISION)
+        self.previous_block_hash_as_number = int(data["previousblockhash"], base=16)
+        assert(self.previous_block_hash_as_number < 10**HASH_PRECISION)
 
-        self.next_block_hash_as_number = int(data["nextblockhash"], base=16)
-        assert(self.next_block_hash_as_number < 10**HASH_PRECISION)
+        self.next_block_hash = None
+        self.next_block_hash_as_number = None
+        if data.get("nextblockhash"):
+            self.next_block_hash = data["nextblockhash"]
+            self.next_block_hash_as_number = int(data["nextblockhash"], base=16)
+            assert(self.next_block_hash_as_number < 10**HASH_PRECISION)
 
+        self.chain_work = data["chainwork"]
         self.chain_work_as_number = self.get_block_chainwork(data)
         assert(self.chain_work_as_number < 10**CHAINWORK_PRECISION)
 
@@ -52,9 +57,9 @@ class BlockSchema(object):
         self.confirmations = data['confirmations']
         self.merkle_root = data['merkleroot']
         self.nonce = data['nonce']
-        self.next_block_hash = data['nextblockhash']
         self.previous_block_hash = data['previousblockhash']
         self.size = int(data['size'])
+        self.bits = int(data['bits'], 16)
         self.stripped_size = data['strippedsize']
         self.version = data['version']
         self.version_hex = data['versionHex']
@@ -105,8 +110,8 @@ class OutputSchema(object):
         script_hex = data["scriptPubKey"]["hex"]
         value = self.output_value_to_satoshis(data["value"])
         self.index = output_index
-        self.type = output_type
-        self.type_name = data["scriptPubKey"]["type"]
+        self.type = data["scriptPubKey"]["type"]
+        self.type_id = output_type
         self.addresses = addresses
         self.script_hex = script_hex
         self.value = value
@@ -142,13 +147,12 @@ class InputSchema(object):
         input_tx_id_as_number = int(data["txid"], base=16)
         assert(input_tx_id_as_number < 10**HASH_PRECISION)
 
-        self.prev_output = None
-        self.txid_as_number = input_tx_id_as_number
         self.txid = data["txid"]
-        self.tx_hash = data["txid"]
-        self.tx_hash_as_number = input_tx_id_as_number
+        self.txid_as_number = input_tx_id_as_number
         self.output_index = int(data["vout"])
         self.script_sig = data["scriptSig"]["hex"]
+        self.txinwitness = data.get("txinwitness")
+        self.prev_output = None
 
     def set_prev_output(self, output):
         self.prev_output = output
@@ -163,18 +167,22 @@ class TransactionSchema(object):
         tx_id_as_number = int(data["txid"], base=16)
         assert(tx_id_as_number < 10**HASH_PRECISION)
 
+        tx_hash_as_number = int(data["hash"], base=16)
+        assert(tx_hash_as_number < 10**HASH_PRECISION)
+
         self.id = data['txid']
         self.id_as_number = tx_id_as_number
-        self.hash = data['txid']
-        self.hash_as_number = tx_id_as_number
+        self.hash = data['hash']
+        self.hash_as_number = tx_hash_as_number
         self.index = tx_index
-        self.size = int(data["size"])
+        self.size = int(data['size'])
+        self.vsize = int(data['vsize'])
         self.time = tx_time
         self.median_time = tx_median_time
         self.coinbase = self.transaction_is_coinbase(data['vin'])
         self.coinbase_script = None
-        self.lock_time = data.get('locktime')
-        self.version = data.get("version")
+        self.lock_time = data['locktime']
+        self.version = data['version']
         self.inputs = []
         self.outputs = []
 

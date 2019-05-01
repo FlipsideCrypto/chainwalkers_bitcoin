@@ -1,0 +1,77 @@
+{
+  "coinbase": {
+    "type": "string",
+    "description": "The coinbase (similar to the hex field of a scriptSig) encoded as hex. Only present if this is a coinbase transaction.",
+    "required": true
+  },
+  "coinbase_script": {
+    "type": "string",
+    "description": "",
+    "required": true
+  },
+  "hash": {
+    "type": "string",
+    "description": "The transaction hash. Differs from txid for witness transactions.",
+    "required": true
+  },
+  "hash_as_number": {
+    "type": "integer",
+    "description": "Integer representation of the tx hash.",
+    "required": true
+  },
+  "id": {
+    "type": "string",
+    "description": "The transaction's TXID encoded as hex in RPC byte order",
+    "required": true
+  },
+  "id_as_number": {
+    "type": "integer",
+    "description": "Integer representation of a tx id.",
+    "required": true
+  },
+  "index": {
+    "type": "integer",
+    "description": "Index of the transaction in the block.",
+    "required": true
+  },
+  "inputs": {
+    "type": "array<input.json>",
+    "description": "An array of objects with each object being an input vector (vin) for this transaction. Input objects will have the same order within the array as they have in the transaction, so the first input listed will be input 0.",
+    "required": true
+  },
+  "lock_time": {
+    "type": "string",
+    "description": "The block number or timestamp at which this transaction is unlocked. If all TxIn inputs have final (0xffffffff) sequence numbers then lock_time is irrelevant. Otherwise, the transaction may not be added to a block until after lock_time. 0 = Not Locked, < 500000000 = Block number at which this transaction is unlocked, >= 500000000 = UNIX timestamp at which this transaction is unlocked. See: https://bitcoin.org/en/developer-guide#locktime_parsing_rules",
+    "required": true
+  },
+  "median_time": {
+    "type": "datetime",
+    "description": "Median time of the tx (block time)",
+    "required": true
+  },
+  "outputs": {
+    "type": "array<output.json>",
+    "description": "The output index number (vout) of the outpoint being spent. The first output in a transaction has an index of 0. Not present if this is a coinbase transaction.",
+    "required": false
+  },
+  "size": {
+    "type": "integer",
+    "description": "The serialized transaction size (see: https://bitcoin.org/en/glossary/serialized-transaction).",
+    "required": true
+  },
+  "time": {
+    "type": "datetime",
+    "description": "Time of the tx (block time)",
+    "required": true
+  },
+  "version": {
+    "type": "string",
+    "description": "Transaction data format version (note, this is signed).",
+    "required": true
+  },
+  "vsize": {
+    "type": "integer",
+    "description": "The virtual transaction size. Differs from size for witness transactions",
+    "required": true
+  }
+}

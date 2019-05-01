@@ -1,0 +1,39 @@
+{
+  "addresses": {
+    "type": "array<string>",
+    "description": "The P2PKH or P2SH addresses used in this transaction, or the computed P2PKH address of any pubkeys in this transaction. This array will not be returned for nulldata or nonstandard script types.",
+    "required": false
+  },
+  "index": {
+    "type": "integer",
+    "description": "The output index number of this output within this transaction.",
+    "required": true
+  },
+  "script_hex": {
+    "type": "string",
+    "description": "Hex representation of the pubkey script.",
+    "required": true
+  },
+  "type": {
+    "type": "string",
+    "description": "The type of script. pubkey for a P2PK script, pubkeyhash for a P2PKH script, scripthash for a P2SH script, multisig for a bare multisig script, nulldata for nulldata scripts, nonstandard for unknown scripts",
+    "example": "pubkeyhash",
+    "required": false
+  },
+  "type_id": {
+    "type": "integer",
+    "description": "Internal Flipside generated mapping of the type to an integer id.",
+    "required": false
+  },
+  "value": {
+    "type": "integer",
+    "description": "The quantity of value paid to this output. May be 0.",
+    "required": true
+  },
+  "value_denomination": {
+    "type": "string",
+    "description": "The denomination of the value. Default is 'satoshis'",
+    "example": "satoshis",
+    "required": true
+  }
+}

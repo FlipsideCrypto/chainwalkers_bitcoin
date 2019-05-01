@@ -1,0 +1,32 @@
+{
+  "output_index": {
+    "type": "integer",
+    "description": "The output index number (vout) of the outpoint being spent. The first output in a transaction has an index of 0. Not present if this is a coinbase transaction",
+    "required": false
+  },
+  "prev_output": {
+    "type": "output.json",
+    "description": "This output being spent as this input.",
+    "required": true
+  },
+  "script_sig": {
+    "type": "string",
+    "description": "An object describing the signature script of this input. Not present if this is a coinbase transaction",
+    "required": false
+  },
+  "txid": {
+    "type": "string",
+    "description": "The TXID of the outpoint being spent, encoded as hex in RPC byte order. Not present if this is a coinbase transaction.",
+    "required": false
+  },
+  "txid_as_number": {
+    "type": "integer",
+    "description": "Integer representation of the transaction id.",
+    "required": false
+  },
+  "txinwitness": {
+    "type": "array<string>",
+    "description": "Hex-encoded witness data. Only for segregated witness transactions",
+    "required": false
+  }
+}
