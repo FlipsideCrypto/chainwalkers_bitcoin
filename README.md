@@ -1,6 +1,6 @@
 # Chainwalkers Bitcoin Parser
 
-This parser communicates with a Bitcoin node to extract and decodes blocks & transactions.
+This parser communicates with a Bitcoin node to extract and decode blocks & transactions.
 
 Chainwalkers Framework Docs: [docs.flipsidecrypto.com](https://docs.flipsidecrypto.com)
 
@@ -16,13 +16,13 @@ Create a `.secrets.json` at the top level directory with a node url. Chainwalker
 
 ## Building
 
-A docker image of the ethereum parser can be built by running:
+A docker image of the Bitcoin chainwalker can be built by running:
 
 ```shell
 bash builder_docker_image.sh
 ```
 
-This will create an image with the tag `chainwalkers_ethereum:latest`.
+This will create an image with the tag `chainwalkers_bitcoin:latest`.
 
 ## Up and Running
 
