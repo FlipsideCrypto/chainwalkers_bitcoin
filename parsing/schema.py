@@ -30,8 +30,12 @@ class BlockSchema(object):
         self.hash_as_number = int(data["hash"], base=16)
         assert(self.hash_as_number < 10**HASH_PRECISION)
 
-        self.previous_block_hash_as_number = int(data["previousblockhash"], base=16)
-        assert(self.previous_block_hash_as_number < 10**HASH_PRECISION)
+        self.previous_block_hash_as_number = None
+        self.previous_block_hash = None
+        if data.get("previousblockhash"):
+            self.previous_block_hash_as_number = int(data["previousblockhash"], base=16)
+            self.previous_block_hash = data['previousblockhash']
+            assert(self.previous_block_hash_as_number < 10**HASH_PRECISION)
 
         self.next_block_hash = None
         self.next_block_hash_as_number = None
@@ -57,7 +61,6 @@ class BlockSchema(object):
         self.confirmations = data['confirmations']
         self.merkle_root = data['merkleroot']
         self.nonce = data['nonce']
-        self.previous_block_hash = data['previousblockhash']
         self.size = int(data['size'])
         self.bits = int(data['bits'], 16)
         self.stripped_size = data['strippedsize']
