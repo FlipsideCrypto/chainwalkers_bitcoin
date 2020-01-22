@@ -6,7 +6,7 @@ import os
 BASE_DIR = (os.path.abspath(os.path.dirname(__file__))).replace("/parsing/scripts", '')
 sys.path.append(BASE_DIR)
 
-from parsing.config import NODE_URL
+from parsing.config import NODE_HOST, NODE_AUTH_PARAM, NODE_PORT
 from parsing.node import Node
 
 
@@ -82,7 +82,7 @@ def format_block(block):
 
 
 def main(block_heights):
-    node = Node(NODE_URL)
+    node = Node(NODE_HOST, NODE_PORT, NODE_AUTH_PARAM)
     results = [format_block(node.get_block(height)) for height in block_heights]
     sys.stdout.write(json.dumps(results))
 

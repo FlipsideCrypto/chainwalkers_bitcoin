@@ -6,4 +6,6 @@ def get_secrets():
 
 secrets = get_secrets()
 
-NODE_URL = secrets['NODE_URL']
+NODE_HOST = secrets['NODE_HOST']
+NODE_PORT = secrets['NODE_PORT']
+NODE_AUTH_PARAM = secrets['NODE_AUTH_PARAM']

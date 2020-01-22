@@ -8,8 +8,8 @@ class Node(object):
     SUPPORTS_GET_BLOCK_2 = True
     SHOULD_SAVE_COINBASE_SCRIPT = True
 
-    def __init__(self, url, user=None, password=None):
-        self.rpc_caller = JsonRpcCaller(url, user=user, password=password, tls=True)
+    def __init__(self, host, port, auth_param, user=None, password=None):
+        self.rpc_caller = JsonRpcCaller(host, port, auth_param, user, password)
 
     def get_block_count(self):
         return self.rpc_caller.call("getblockcount")
