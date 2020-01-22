@@ -6,4 +6,4 @@
 #      > {"height": 3000000}
 #
 #
-python parsing/scripts/height.py
+export PYTHONWARNINGS="ignore" && python parsing/scripts/height.py
